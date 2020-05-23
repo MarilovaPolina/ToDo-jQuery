@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<title>ToDo jQERY</title>
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<style>
+	body{
+		background-color:rgb(227, 190, 68);
+	}
+
+	.done {
+		text-decoration: line-through !important;
+	}
+	</style>
+</head>
+
+<body>
+<div class="container">
+	<br>
+		<h2>ToDo</h2>
+
+	<ul class="list-group" id="listDoing">
+	</ul>
+	<br>
+
+	<div class="input-group">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Doings</span>
+		</div>
+		<input type="text" class="form-control" aria-label="Default" id="doingText" placeholder="Your doings">
+	</div>
+	<br>
+		
+	<button id="adding" class="input-group-text" for="inputGroupSelect01">Add</button>
+
+	</div>
+
+<script>
+		var $doingText=$("#doingText");
+		var $listDoing=$("#listDoing");
+		var $message=$("#message");
+		var input=$("input");
+		var $element=$("#listDoing li");
+		var ul = $('#listDoing');
+
+		//добавление
+	  	$( "#adding" ).on("click", function(){
+	  	var valueInput=input.val();
+
+		//если ничего не введено
+	  	if(valueInput==""){
+	  		input.css({"border":"1px solid red"});
+	  		return;
+	  	}
+	  	else{
+    		$("#listDoing").append("<li id='task' class='list-group-item list-group-item-action'>"+$doingText.val()+"</li>");
+    		$doingText.val("");
+    		input.css({"border":""});
+    	}
+
+    	//удаление
+    	$('#listDoing li').dblclick(function (){
+ 		$(this).remove();	
+		});
+
+		ul.bind('click', function (e) {
+			var itemUl = e.target;
+			$(itemUl).toggleClass('done');
+		})
+		
+    });
+</script>
+</body>
+
+</html>
